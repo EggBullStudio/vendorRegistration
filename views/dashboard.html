@@ -1,0 +1,224 @@
+<div class="page page-dashboard" ng-controller="DashboardCtrl">
+	
+	<div class="page-wrap">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default panel-hovered panel-stacked mb30">
+                    <div class="panel-heading">Vendor Details</div>
+                    <div class="panel-body">
+                        <form role="form" class="form-horizontal" action="javascript:;">
+                            <!-- form horizontal acts as a row -->
+                            <!-- normal control -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Email</label>
+                                        <div class="col-md-9">
+                                            <input type="email" class="form-control" ng-model="registration.email" placeholder="Email address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Password</label>
+                                        <div class="col-md-9">
+                                            <input type="password" class="form-control" placeholder="Password Text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Firsname</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" ng-model="registration.firstname" placeholder="Firstname">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Surname</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" ng-model="registration.surname" placeholder="Surname">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- with hint -->
+                            <!--<div class="form-group">
+            <label class="col-md-2 control-label">With Hint</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" placeholder="Hint Text">
+                <p class="text-danger text-right xsmall">hint description</p>
+            </div>
+        </div>-->
+                            <!-- passowrd control -->
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label class="col-md-1 control-label">Address</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" ng-model="registration.address" placeholder="Parking space address">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-default panel-hovered panel-stacked mb30">
+                    <div class="panel-heading">Parking Rate</div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select id="personSelect" data-placeholder="Select a day" class="form-control" ng-model="schedule.day">
+                                            <option value="Sunday">Sun</option>	<!-- empty, for placeholder -->
+                                            <option value="Monday">Mon</option>
+                                            <option value="Tueday">Tue</option>
+                                            <option value="Wednesday">Wed</option>
+                                            <option value="Thursday">Thu</option>
+                                            <option value="Friday">Fri</option>
+                                            <option value="Sat">Sat</option>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">Select a day</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select id="personSelect" data-placeholder="Option" class="form-control" ng-model="schedule.type">
+                                            <option value="Earlybird">Earlybird</option>	<!-- empty, for placeholder -->
+                                            <option value="Night Rate">Night Rate</option>
+                                            <option value="Custom">Custom</option>
+                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">Schedule type</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <select data-placeholder="Option" class="form-control" ng-model="schedule.from">
+                                                <option value="8">8:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="9">9:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="10">10:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="11">11:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="12">12:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="13">1:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">2:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">3:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">4:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">5:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">6:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">7:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">8:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">9:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">10:00 PM</option>	<!-- empty, for placeholder -->
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">From</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <select data-placeholder="Option" class="form-control" ng-model="schedule.to">
+                                                <option value="8" selected>8:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="9">9:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="10">10:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="11">11:00 AM</option>	<!-- empty, for placeholder -->
+                                                <option value="12">12:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="13">1:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">2:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">3:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">4:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">5:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">6:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">7:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">8:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">9:00 PM</option>	<!-- empty, for placeholder -->
+                                                <option value="8">10:00 PM</option>	<!-- empty, for placeholder -->
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">To</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="text" class="form-control" placeholder="Rate" ng-model="schedule.price">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-primary mr5 waves-effect" type="button" ng-click="add();">Add</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-lg-1"><button type="button" class="btn btn-default btn-sm fa fa-trash waves-effect"></button></th>
+                                                <th>Day</th>
+                                                <th>Schedule Type</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th class="col-lg-2">Rate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in DailyRates">
+                                                <td>
+                                                    <div class="ui-checkbox ui-checkbox-primary ml5">
+                                                        <label>
+                                                            <input type="checkbox"><span></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>{{ item.Day }}</td>
+                                                <td>{{ item.Type }}</td>
+                                                <td>{{ item.From }}:00</td>
+                                                <td>{{ item.To }}:00</td>
+                                                <td>${{ item.Rate }}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- #end row -->
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-8">
+                <div class="clearfix right">
+                    <button class="btn btn-primary mr5 waves-effect" type="submit">Submit</button>
+                    <button class="btn btn-default waves-effect">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- #end page-wrap -->
+</div>
