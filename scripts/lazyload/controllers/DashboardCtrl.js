@@ -1,11 +1,37 @@
 ﻿;(function() {
 
     var app = angular.module("app.ctrls");
-    app.controller("DashboardCtrl", ["$scope", '$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
-        $scope.registration = {};
+    app.controller("DashboardCtrl", ["$scope", '$http', function ($scope, $http) {
+        $scope.registration = {numOfVehicle: 1};
         $scope.DailyRates = [];
 
-        $scope.schedule = { day: "Monday", type: "Custom", from: 8, to: 9 };
+        $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
+
+        $scope.displayDay = function (dayValue) {
+            switch (dayValue) {
+                case "0":
+                    return "Sunday";
+                    break;
+                case "1":
+                    return "Monday";
+                    break;
+                case "2":
+                    return "Tuesday";
+                    break;
+                case "3":
+                    return "Wednesday";
+                    break;
+                case "4":
+                    return "Thursday";
+                    break;
+                case "5":
+                    return "Friday";
+                    break;
+                case "6":
+                    return "Saturday";
+                    break;
+            }
+        };
 
         $scope.add = function () {
             if ((/^\s*$/).test($scope.schedule.price) || !$scope.schedule.price) {
@@ -38,21 +64,73 @@
         };
 
         $scope.submit = function () {
-            $location.hash('ValidationErrorAnchor');
+            $scope.DisableSubmit = true;
             if (((/^\s*$/).test($scope.registration.email) || !$scope.registration.email) ||
                 ((/^\s*$/).test($scope.registration.firstname) || !$scope.registration.firstname) ||
+                ((/^\s*$/).test($scope.registration.password) || !$scope.registration.password) ||
                 ((/^\s*$/).test($scope.registration.surname) || !$scope.registration.surname) ||
                 ((/^\s*$/).test($scope.registration.address) || !$scope.registration.address)) {
                 $scope.ShowFormValidationError = true;
                 $scope.ShowSuccess = false;
                 $scope.ValidationError = "Please input all required fields.";
-                $anchorScroll();
+                $scope.DisableSubmit = false;
                 return;
             }
-            $scope.ShowFormValidationError = false;
-            $scope.ShowSuccess = true;
-            $location.hash('ValidationErrorAnchor');
-            $anchorScroll();
+
+            if (((/^\s*$/).test($scope.registration.lat) || !$scope.registration.lat) ||
+                ((/^\s*$/).test($scope.registration.lng) || !$scope.registration.lng)) {
+                $scope.ShowFormValidationError = true;
+                $scope.ShowSuccess = false;
+                $scope.ValidationError = "Please select a valid address.";
+                $scope.DisableSubmit = false;
+                return;
+            }
+
+            var availability = [];
+            for (var i=0; i < $scope.DailyRates.length; i++){
+                var avail = {
+                    "Day": $scope.DailyRates[i].Day,
+                    "From": $scope.DailyRates[i].From,
+                    "To": $scope.DailyRates[i].To,
+                    "Price": $scope.DailyRates[i].Rate
+                }
+                availability.push(avail);
+            }
+
+            var data = {
+                "Firstname": $scope.registration.firstname,
+                "Surname": $scope.registration.surname,
+                "Email": $scope.registration.email,
+                "Password": $scope.registration.password,
+                "Address": $scope.registration.address,
+                "Lat": $scope.registration.lat,
+                "Lng": $scope.registration.lng,
+                "PricePerHour": 0,
+                "NumberOfVehicle": $scope.registration.numOfVehicle,
+                "Availability": availability
+            };
+
+            $http.post('http://core.parko.co.nz/api/ParkingSpace',
+              JSON.stringify(data),
+              {
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              }
+          ).then(function (data) {
+              $scope.registration = { numOfVehicle: 1 };
+              $scope.DailyRates = [];
+              $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
+              $scope.ShowFormValidationError = false;
+              $scope.ShowSuccess = true;
+              $scope.DisableSubmit = false;
+          }, function (error) {
+              $scope.DisableSubmit = false;
+              var g = error;
+          });
+
+
+
         };
 
         $scope.selectOption = function () {
@@ -75,6 +153,20 @@
                     break;
             }
         };
+
+        var input = (document.getElementById('txtAddress'));
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.addListener('place_changed', function () {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+            $scope.registration.lat = place.geometry.location.lat();
+            $scope.registration.lng = place.geometry.location.lng()
+            $scope.registration.address = place.formatted_address;
+        });
 
     }])
 
