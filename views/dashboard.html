@@ -173,7 +173,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="col-lg-1"><button type="button" class="btn btn-default btn-sm fa fa-trash waves-effect"></button></th>
+                                                <th class="col-lg-1"><button type="button" class="btn btn-default btn-sm fa fa-trash waves-effect" ng-click="delete();"></button></th>
                                                 <th>Day</th>
                                                 <th>Schedule Type</th>
                                                 <th>From</th>
@@ -186,7 +186,7 @@
                                                 <td>
                                                     <div class="ui-checkbox ui-checkbox-primary ml5">
                                                         <label>
-                                                            <input type="checkbox"><span></span>
+                                                            <input type="checkbox" ng-model="item.Delete"><span></span>
                                                         </label>
                                                     </div>
                                                 </td>

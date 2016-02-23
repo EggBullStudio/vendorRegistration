@@ -12,7 +12,15 @@
             var type = $scope.schedule.type;
             var from = $scope.schedule.from;
             var to = $scope.schedule.to;
-            $scope.DailyRates.push({Rate: rate, Day: day, Type: type, From: from, To: to});
+            $scope.DailyRates.push({Rate: rate, Day: day, Type: type, From: from, To: to, Delete: false});
+        };
+
+        $scope.delete = function () {
+            for (var i = 0; i < $scope.DailyRates.length; i++) {
+                if ($scope.DailyRates[i].Delete) {
+                    $scope.DailyRates.splice(i, 1);
+                }
+            }
         };
 
     }])
