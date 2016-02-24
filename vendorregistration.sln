@@ -8,20 +8,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "vendorregistration", "http:
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_58544"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\fray\GitProject\Eggbull\vendorregistration\"
+		Debug.AspNetCompiler.PhysicalPath = "..\vendorregistration\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58544\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_58544"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\fray\GitProject\Eggbull\vendorregistration\"
+		Release.AspNetCompiler.PhysicalPath = "..\vendorregistration\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58544\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\..\..\..\..\..\fray\GitProject\Eggbull\vendorregistration\"
+		SlnRelativePath = "..\vendorregistration\"
 	EndProjectSection
 EndProject
 Global
