@@ -81,6 +81,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Phone</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" ng-model="registration.phone" placeholder="Contact number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Photo</label>
+                                        <div class="col-md-9">
+                                            <input type="file" class="form-control" id="uploadFile" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -243,6 +261,12 @@
                 <span aria-hidden="true">x</span>
             </button>
             <div>Well done! Your registration has been submitted.</div>
+        </div>
+        <div class="alert alert-info" ng-show="ShowUploadMessage">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">x</span>
+            </button>
+            <div>Please wait while the photo is being uploaded.</div>
         </div>
 
         <div class="row">

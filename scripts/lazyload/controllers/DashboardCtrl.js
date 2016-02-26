@@ -5,6 +5,8 @@
         $scope.registration = {numOfVehicle: 1};
         $scope.DailyRates = [];
 
+        
+
         $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
 
         $scope.displayDay = function (dayValue) {
@@ -107,7 +109,8 @@
                 "Lng": $scope.registration.lng,
                 "PricePerHour": 0,
                 "NumberOfVehicle": $scope.registration.numOfVehicle,
-                "Availability": availability
+                "Availability": availability,
+                "Phone" : $scope.registration.phone
             };
 
             $http.post('http://core.parko.co.nz/api/ParkingSpace',
@@ -118,12 +121,51 @@
                   }
               }
           ).then(function (data) {
-              $scope.registration = { numOfVehicle: 1 };
-              $scope.DailyRates = [];
-              $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
-              $scope.ShowFormValidationError = false;
-              $scope.ShowSuccess = true;
-              $scope.DisableSubmit = false;
+              $scope.ShowUploadMessage = true;
+
+              var fileFormData = new FormData();
+              var fileInput = document.getElementById('uploadFile');
+              if (fileInput.files.length > 0) {
+                  fileFormData.append("files", fileInput.files[0]);
+                  fileFormData.append("filename", fileInput.files[0].name);
+                  fileFormData.append("parkingspaceid", data.data.Id);
+
+                  var uploadRequest = {
+                      method: 'PUT',
+                      url: 'http://core.parko.co.nz/api/ParkingSpace',
+                      data: fileFormData,
+                      headers: {
+                          'Content-Type': undefined
+                      }
+                  };
+
+                  $http(uploadRequest)
+                      .success(function (d) {
+                          $scope.ShowUploadMessage = false;
+                          $scope.registration = { numOfVehicle: 1 };
+                          $scope.DailyRates = [];
+                          $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
+                          $scope.ShowFormValidationError = false;
+                          $scope.ShowSuccess = true;
+                          $scope.DisableSubmit = false;
+                      })
+                      .error(function (ee) {
+                          alert(ee);
+                      });
+              }
+              else {
+                  $scope.ShowUploadMessage = true;
+                  $scope.registration = { numOfVehicle: 1 };
+                  $scope.DailyRates = [];
+                  $scope.schedule = { day: "1", type: "Custom", from: 8, to: 9 };
+                  $scope.ShowFormValidationError = false;
+                  $scope.ShowSuccess = true;
+                  $scope.DisableSubmit = false;
+              }
+              
+
+
+
           }, function (error) {
               $scope.DisableSubmit = false;
               var g = error;
