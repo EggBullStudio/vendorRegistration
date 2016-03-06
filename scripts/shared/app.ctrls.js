@@ -127,9 +127,37 @@ angular.module("app.ctrls", [])
       	else
          	Fullscreen.all()
 	};
+	
+	if (localStorage.getItem("ParkoAdminToken") == null){
+	    $scope.showLogin = true;
+	    $scope.showLogout = false;
+	}
+	else {
+	    $scope.showLogin = false;
+	    $scope.showLogout = true;
+	}
 
+	$scope.gotoLogin = function () {
+	    document.location.href = "#/pages/signin";
+	};
+
+	$scope.gotoLogout = function () {
+	    localStorage.clear();
+	    document.location.href = "/";
+	}
 	
 }])
+
+.controller("NavCtrl", ["$scope", "Fullscreen", function ($scope, Fullscreen) {
+    if (localStorage.getItem("ParkoAdminToken") == null) {
+        $scope.showPrivate = false;
+    }
+    else {
+        $scope.showPrivate = true;
+    }
+
+}])
+
 
 
 /// ==== Dashboard Controller

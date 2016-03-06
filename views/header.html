@@ -83,6 +83,15 @@
 
 <ul class="list-unstyled right-elems">
 
+    <li ng-show="showLogin">
+        <button type="button" ng-click="gotoLogin();" class="btn fa fa-power-off btn-icon-circle icon waves-effect"></button>
+    </li>
+    <li ng-show="showLogout">
+        <button type="button" ng-click="gotoLogout();" class="btn fa fa-sign-out btn-icon-circle icon waves-effect"></button>
+    </li>
+    <li>&nbsp;</li>
+
+
 	<!--<li class="profile-drop hidden-xs dropdown" dropdown>
 		<a href dropdown-toggle>
 			<img src="images/admin.jpg" alt="admin-pic">

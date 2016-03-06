@@ -1,4 +1,6 @@
-;(function() {
+; var parkoTokenKey = "ParkoAdminToken"
+; var parkoBaseAPIUrl = "http://core.parko.co.nz/api"
+; (function () {
 	"use strict";
 
 	angular.module("app", [
@@ -23,7 +25,8 @@
 		"app.form.ctrls",
 		"app.table.ctrls",
 		"app.email.ctrls",
-		"app.todo"
+		"app.todo",
+        "app.services"
 		
 	])
 
@@ -156,6 +159,38 @@
 		                name: "app.ctrls",
 		                files: ["scripts/lazyload/controllers/DashboardCtrl.js"]
 		            })
+		        }]
+		    }
+		});
+
+		$routeProvider.when("/pages/signin", {
+		    templateUrl: "views/pages/signin.html",
+		    controller: "SignInCtrl",
+		    resolve: {
+		        deps: ["$ocLazyLoad", function (a) {
+		            return a.load({
+		                name: "app.ctrls",
+		                files: ["scripts/lazyload/controllers/signinCtrl.js"]
+		            })
+		        }]
+		    }
+		});
+
+		$routeProvider.when("/pages/manageparkingspace", {
+		    templateUrl: "views/pages/ManageparkingSpace.html",
+		    controller: "ManageParkingCtrl",
+		    resolve: {
+		        deps: ["$ocLazyLoad", function (a) {
+		            return a.load({
+		                name: "app.ctrls",
+		                files: ["scripts/lazyload/controllers/ManageParkingSpaceCtrl.js"]
+		            })
+					.then(function () {
+					    return a.load({
+					        name: "app.services",
+					        files: ["scripts/shared/app.services.js"]
+					    })
+					})
 		        }]
 		    }
 		});

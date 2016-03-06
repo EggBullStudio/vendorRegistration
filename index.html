@@ -45,7 +45,7 @@
 	<!-- main-container -->
 	<div class="main-container clearfix" ng-class="{'nav-expand': navFull, 'nav-horizontal': navHorizontal}">
 		<aside class="nav-wrap" ng-class="{'nav-expand': navFull, 'nav-offcanvas': navOffCanvas}"
-			id="site-nav" custom-scrollbar
+			id="site-nav" custom-scrollbar ng-controller="NavCtrl"
 			ng-include=" 'views/nav.html' ">
 		
 		</aside>

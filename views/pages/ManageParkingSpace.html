@@ -1,0 +1,41 @@
+﻿<div class="page page-dashboard" ng-controller="ManageParkingCtrl">
+
+    <div class="page-wrap">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel mb20 panel-primary panel-hovered">
+                    <div class="panel-heading">Parking spaces</div>
+                    <div class="panel-body">
+
+                        <table class="table table-hover table-condensed table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-lg-1"><button type="button" class="btn btn-default btn-sm fa fa-trash waves-effect"></button></th>
+                                    <th>Address</th>
+                                    <th>Vendor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in parkingSpaces">
+                                    <td>
+                                        <div class="ui-checkbox ui-checkbox-primary ml5">
+                                            <label>
+                                                <input type="checkbox"><span></span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td><a href="" ng-click="gotoParkingSpaceDetails(item.Id);">{{ item.Address }}</a></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div> <!-- Panel body-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
