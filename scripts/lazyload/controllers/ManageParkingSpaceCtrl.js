@@ -10,6 +10,7 @@
 
         $scope.gotoParkingSpaceDetails = function (parkingSpaceId) {
             ParkingSpaceIdParameter.Set(parkingSpaceId);
+            document.location.href = "#/pages/parkingspacedetails";
         };
 
         var getParkingSpacesAPIUrl = parkoBaseAPIUrl + '/ParkingSpace?token=' + encodeURIComponent(localStorage.getItem(parkoTokenKey));

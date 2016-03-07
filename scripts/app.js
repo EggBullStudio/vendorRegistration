@@ -195,7 +195,27 @@
 		    }
 		});
 
-		// text angular loaded in email/inbox
+		$routeProvider.when("/pages/parkingspacedetails", {
+		    templateUrl: "views/pages/ParkingSpaceDetails.html",
+		    controller: "ParkingSpaceDetailsCtrl",
+		    resolve: {
+		        deps: ["$ocLazyLoad", function (a) {
+		            return a.load({
+		                name: "app.ctrls",
+		                files: ["scripts/lazyload/controllers/ParkingSpaceDetailsCtrl.js"]
+		            })
+					.then(function () {
+					    return a.load({
+					        name: "app.services",
+					        files: ["scripts/shared/app.services.js"]
+					    })
+					})
+		        }]
+		    }
+		});
+
+
+	    // text angular loaded in email/inbox
 		$routeProvider.when("/email/inbox", {
 			templateUrl: "views/email/inbox.html",
 			resolve: {
