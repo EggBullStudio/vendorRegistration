@@ -16,6 +16,7 @@
 		"ui.bootstrap",
 		"angular-loading-bar",
 		"FBAngular",
+
 	
 		/* custom modules */
 		"app.ctrls",
@@ -200,9 +201,12 @@
 		    controller: "ParkingSpaceDetailsCtrl",
 		    resolve: {
 		        deps: ["$ocLazyLoad", function (a) {
-		            return a.load({
-		                name: "app.ctrls",
-		                files: ["scripts/lazyload/controllers/ParkingSpaceDetailsCtrl.js"]
+		            return a.load("ui.calendar")
+		            .then( function () {
+		                a.load({
+		                    name: "app.ctrls",
+		                    files: ["scripts/lazyload/controllers/ParkingSpaceDetailsCtrl.js"]
+		                })
 		            })
 					.then(function () {
 					    return a.load({
