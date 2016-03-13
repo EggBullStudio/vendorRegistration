@@ -11,9 +11,37 @@
                         <div class="panel mb20 panel-lined panel-hovered">
                             <div class="panel-heading">Basic Details</div>
                             <div class="panel-body">
-                                <label>Address</label> sdsdfsdfsdfsf
-                                <br />
-                                <label>Vendor</label> sdfsdfs
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Address</label> {{Address}}
+                                        <br />
+                                        <label>Vendor</label> {{Vendor}}
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Phone</label> {{Phone}}
+                                        <br />
+                                        <label>Email</label> {{Email}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <table class="table table-bordered table-striped dataTable no-footer">
+                                            <thead>
+                                                <tr>
+                                                    <td>Day</td>
+                                                    <td>From</td>
+                                                    <td>To</td>
+                                                </tr>
+                                            </thead>
+                                            <tr ng-repeat="item in Availability">
+                                                <td>{{ item.Day }}</td>
+                                                <td>{{ item.From }}</td>
+                                                <td>{{ item.To }}</td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
