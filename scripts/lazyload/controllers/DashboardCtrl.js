@@ -113,7 +113,7 @@
                 "Phone" : $scope.registration.phone
             };
 
-            $http.post('http://core.parko.co.nz/api/ParkingSpace',
+            $http.post(parkoBaseAPIUrl + '/ParkingSpace',
               JSON.stringify(data),
               {
                   headers: {
@@ -132,7 +132,7 @@
 
                   var uploadRequest = {
                       method: 'PUT',
-                      url: 'http://core.parko.co.nz/api/ParkingSpace',
+                      url: parkoBaseAPIUrl + '/ParkingSpace',
                       data: fileFormData,
                       headers: {
                           'Content-Type': undefined

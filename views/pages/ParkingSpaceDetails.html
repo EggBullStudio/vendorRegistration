@@ -23,7 +23,7 @@
                                         <label>Email</label> {{Email}}
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!--<div class="row">
                                     <div class="col-lg-6">
                                         <table class="table table-bordered table-striped dataTable no-footer">
                                             <thead>
@@ -41,9 +41,190 @@
                                         </table>
 
                                     </div>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success" ng-show="ShowUpdateSuccess">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <div id="lblParkingRateErrorMessage">Successfully saved!</div>
+                                </div>
+                                <div class="alert alert-danger" ng-show="ShowParkingValidationError">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <div id="lblParkingRateErrorMessage">{{ ParkingError }}</div>
+                                </div>
+
+                                <div class="panel panel-default panel-hovered panel-stacked mb30">
+                                    <div class="panel-heading">Parking Rate</div>
+                                    <div class="panel-body">
+                                        <form role="form">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <select id="personSelect" data-placeholder="Select a day" class="form-control" ng-model="schedule.day">
+                                                            <option value="0">Sun</option>	<!-- empty, for placeholder -->
+                                                            <option value="1">Mon</option>
+                                                            <option value="2">Tue</option>
+                                                            <option value="3">Wed</option>
+                                                            <option value="4">Thu</option>
+                                                            <option value="5">Fri</option>
+                                                            <option value="6">Sat</option>
+                                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">Select a day</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <select id="personSelect" data-placeholder="Option" class="form-control" ng-model="schedule.type" ng-change="selectOption();">
+                                                            <option value="Earlybird">Earlybird</option>	<!-- empty, for placeholder -->
+                                                            <option value="Night Rate">Night Rate</option>
+                                                            <option value="Custom">Custom</option>
+                                                        </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">Schedule option</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="col-md-9">
+                                                            <select data-placeholder="Option" class="form-control" ng-model="schedule.from" ng-disabled="FromDisabled">
+                                                                <option value="6">6:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="7">7:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="8">8:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="9">9:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="10">10:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="11">11:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="12">12:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="13">1:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="14">2:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="15">3:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="16">4:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="17">5:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="18">6:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="19">7:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="20">8:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="21">9:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="22">10:00 PM</option>	<!-- empty, for placeholder -->
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">From</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <div class="col-md-9">
+                                                            <select data-placeholder="Option" class="form-control" ng-model="schedule.to" ng-disabled="ToDisabled">
+                                                                <option value="6">6:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="7">7:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="8" selected>8:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="9">9:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="10">10:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="11">11:00 AM</option>	<!-- empty, for placeholder -->
+                                                                <option value="12">12:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="13">1:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="14">2:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="15">3:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="16">4:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="17">5:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="18">6:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="19">7:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="20">8:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="21">9:00 PM</option>	<!-- empty, for placeholder -->
+                                                                <option value="22">10:00 PM</option>	<!-- empty, for placeholder -->
+                                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-personSelect-container"><span class="select2-selection__rendered" id="select2-personSelect-container"><span class="select2-selection__placeholder">To</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input type="number" class="form-control" placeholder="Rate" ng-model="schedule.price">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button class="btn btn-primary mr5 waves-effect" type="button" ng-click="add();">Add</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="col-lg-1"><button type="button" class="btn btn-default btn-sm fa fa-trash waves-effect" ng-click="delete();"></button></th>
+                                                                <th>Day</th>
+                                                                <th>From</th>
+                                                                <th>To</th>
+                                                                <th class="col-lg-2">Rate</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in DailyRates">
+                                                                <td>
+                                                                    <div class="ui-checkbox ui-checkbox-primary ml5">
+                                                                        <label>
+                                                                            <input type="checkbox" ng-model="item.Delete"><span></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                                <td>{{ displayDay(item.Day) }}</td>
+                                                                <td>{{ item.From }}:00</td>
+                                                                <td>{{ item.To }}:00</td>
+                                                                <td>${{ item.Price }}</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                    <button class="btn btn-primary mr5 waves-effect" type="button" ng-click="save();">Save</button>
+                                                </div>
+
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success" ng-show="ShowUpdateSuccess">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <div id="lblParkingRateErrorMessage">Successfully saved!</div>
+                                </div>
+                                <div class="alert alert-danger" ng-show="ShowParkingValidationError">
+                                    <button type="button" class="close" data-dismiss="alert">
+                                        <span aria-hidden="true">x</span>
+                                    </button>
+                                    <div id="lblParkingRateErrorMessage">{{ ParkingError }}</div>
+                                </div>
+
+                                <div class="panel panel-default panel-hovered panel-stacked mb30">
+                                    <div class="panel-heading">Image</div>
+                                    <div class="panel-body">
+                                        <div class="media">
+                                            <img ng-src="{{ ParkingImage }}" class="media-object" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="row" style="height: 400px !important;">
                             <div class="col-sm-12">
@@ -62,5 +243,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>

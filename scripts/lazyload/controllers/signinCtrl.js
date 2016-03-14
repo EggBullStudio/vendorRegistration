@@ -11,7 +11,7 @@
                 "Password": $scope.password,
                 "Source": "mobile"
             };
-            $http.post('http://core.parko.co.nz/api/AdminUser',
+            $http.post(parkoBaseAPIUrl + '/AdminUser',
               JSON.stringify(data),
               {
                   headers: {
